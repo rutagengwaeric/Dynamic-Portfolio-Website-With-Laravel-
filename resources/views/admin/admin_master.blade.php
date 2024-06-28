@@ -73,8 +73,8 @@
         <!-- /Right-bar -->
 
         <!-- Right bar overlay-->
-        <di class="rightbar-overlay"></di        <!-- JAVASCRIPT -->v>
-
+        <div class="rightbar-overlay"></div>
+        <!-- JAVASCRIPT -->
         <script src="  {{ asset('backend/assets/libs/jquery/jquery.min.js')}}"></script>
         <script src="  {{ asset('backend/assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
         <script src="  {{ asset('backend/assets/libs/metismenu/metisMenu.min.js')}}"></script>
@@ -110,6 +110,11 @@
         {{-- Toaster  --}}
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+        <!--tinymce js-->
+        <script src=" {{ asset('backend/assets/libs/tinymce/tinymce.min.js') }}"></script>
+
+        <!-- init js -->
+        <script src=" {{ asset('backend/assets/js/pages/form-editor.init.js') }} "></script>
        <script>
             @if(Session::has('message'))
             var type = "{{ Session::get('alert-type','info') }}"
