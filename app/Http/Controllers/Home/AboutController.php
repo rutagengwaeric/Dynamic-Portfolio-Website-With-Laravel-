@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
 use App\Models\About;
+use App\Models\MultiImage;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use Intervention\Image\Laravel\Facades\Image;
@@ -71,4 +73,80 @@ class AboutController extends Controller
             'about_page' => $aboutData
         ]);
     }
+    // End Method
+
+    public function AboutMultiImage(){
+        return view('admin.about_page.multi_image');
+    }
+    // End Method
+
+    public function StoreMultiImage(Request $request){
+
+        $image = $request->file('multi_image');
+
+        foreach ($image as $multi_image) {
+            $name_gen = hexdec(uniqid()).'.'.$multi_image->getClientOriginalExtension();
+            Image::read($multi_image)->resize(220,220)->save('upload/multi/'.$name_gen);
+            $save_url = 'upload/multi/'.$name_gen ;
+            MultiImage::Insert([
+                 'multi_image' => $save_url,
+                 'created_at' => Carbon::now(),
+
+            ]);
+
+        }
+        // End of For Each Loop
+
+            $notification = array(
+                'message' => 'Multi Inserted Image Successfully',
+                 'alert'  => 'warning'
+            );
+            return redirect()->back()->with($notification);
+
+
+
+
+    }
+    // End Method
+
+
+    public function AllMultiImage(){
+
+        $multiImages = MultiImage::latest()->get();
+        return view('admin.about_page.all_multi_image',[
+            'multiImages' => $multiImages
+        ]);
+
+    }
+    // End Method
+
+        public function EditMultiImage($id){
+
+            $multiImage = MultiImage::findOrFail($id);
+            return view('admin.about_page.edit_multi_image',[
+                'multiImage' => $multiImage
+            ]);
+
+        }
+    // End Method
+
+        public function UpdateMultiImage(Request $request){
+
+            $id = $request->id;
+            $image = $request->file('multi_image');
+            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            Image::read($image)->resize(220,220)->save('upload/multi/'.$name_gen);
+            $save_url = 'upload/multi/'.$name_gen ;
+            MultiImage::findOrFail($id)->update([
+                'multi_image' => $save_url,
+                'updated_at' => Carbon::now()
+            ]);
+
+            $notification = array(
+                'message' => 'Multi Image Updated Successfully',
+                 'alert'  => 'success'
+            );
+            return redirect()->back()->with($notification);
+        }
+
 }

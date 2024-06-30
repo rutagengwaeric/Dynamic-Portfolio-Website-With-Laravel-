@@ -32,6 +32,10 @@
 
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
 
+          {{-- <!-- DataTables -->
+          <link href=" {{ asset('backend/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }} " rel="stylesheet" type="text/css" />
+          <link href=" {{ asset('backend/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }} " rel="stylesheet" type="text/css" />
+          <link href=" {{ asset('backend/assets/libs/datatables.net-select-bs4/css//select.bootstrap4.min.css') }} " rel="stylesheet" type="text/css" /> --}}
 
     </head>
 
@@ -117,7 +121,7 @@
         <script src=" {{ asset('backend/assets/js/pages/form-editor.init.js') }} "></script>
        <script>
             @if(Session::has('message'))
-            var type = "{{ Session::get('alert-type','info') }}"
+            var type = "{{ Session::get('alert-type','success') }}"
             switch(type){
                case 'info':
                toastr.info(" {{ Session::get('message') }} ");
@@ -137,6 +141,19 @@
             }
             @endif
            </script>
+
+
+        <!-- Required datatable js -->
+        <script src=" {{ asset('backend/assets/libs/datatables.net/js/jquery.dataTables.min.js') }} "></script>
+        <script src=" {{ asset('backend/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }} "></script>
+
+         <!-- Responsive examples -->
+         <script src=" {{ asset('backend/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js') }} "></script>
+         <script src=" {{ asset('backend/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') }} "></script>
+
+         <!-- Datatable init js -->
+         <script src=" {{ asset('backend/assets/js/pages/datatables.init.js') }} "></script>
+
     </body>
 
 </html>
