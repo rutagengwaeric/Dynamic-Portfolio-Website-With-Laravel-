@@ -41,7 +41,7 @@ class AboutController extends Controller
 
             $notification = array(
                 'message' => 'About Page Updated with Image Successfully',
-                 'alert'  => 'success'
+                 'alert-type'  => 'success'
             );
             return redirect()->back()->with($notification);
 
@@ -57,7 +57,7 @@ class AboutController extends Controller
 
            $notification = array(
                'message' => 'About Page Updated with Image Successfully',
-                'alert'  => 'success'
+                'alert-type'  => 'success'
            );
            return redirect()->back()->with($notification);
 
@@ -122,6 +122,7 @@ class AboutController extends Controller
 
         public function EditMultiImage($id){
 
+
             $multiImage = MultiImage::findOrFail($id);
             return view('admin.about_page.edit_multi_image',[
                 'multiImage' => $multiImage
@@ -144,9 +145,27 @@ class AboutController extends Controller
 
             $notification = array(
                 'message' => 'Multi Image Updated Successfully',
-                 'alert'  => 'success'
+                 'alert-type'  => 'success'
+            );
+            return redirect()->route('all.multi.image')->with($notification);
+        }
+        // End method
+
+        public function DeleteMultiImage($id){
+
+            $multi = MultiImage::findOrFail($id);
+            $img = $multi->multi_image;
+            unlink($img);
+            MultiImage::findOrFail($id)->delete();
+
+            $notification = array(
+                'message' => 'Multi Image Deleted Successfully',
+                 'alert-type'  => 'success'
             );
             return redirect()->back()->with($notification);
+
+
+
         }
 
 }

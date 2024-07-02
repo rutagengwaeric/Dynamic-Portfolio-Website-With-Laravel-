@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Home\AboutController;
 use App\Http\Controllers\Home\HomeSliderController;
+use App\Http\Controllers\Home\PortfolioController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,7 +38,7 @@ Route::controller(HomeSliderController::class)->group(function(){
 });
 
 // About Page Routes
-Route::controller(AboutController::class)->group(function(){
+Route::controller(AboutController::class)->middleware('auth')->group(function(){
 
     Route::get('/about/page', 'AboutPage')->name('about.page');
     Route::post('/update/about', 'UpdateAbout')->name('update.about');
@@ -47,8 +48,9 @@ Route::controller(AboutController::class)->group(function(){
     Route::get('/all/multi/image', 'AllMultiImage')->name('all.multi.image');
     Route::get('/edit/multi/image/{id}', 'EditMultiImage')->name('edit.multi.image');
     Route::post('/update/multi/image', 'UpdateMultiImage')->name('update.multi.image');
+    Route::get('/delete/multi/image/{id}', 'DeleteMultiImage')->name('delete.multi.image');
 
-})->middleware('auth');
+});
 
 // Authenticated User Profile Routes
 Route::middleware('auth')->group(function () {
@@ -56,6 +58,20 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+
+// Portifolio Routes
+Route::controller(PortfolioController::class)->middleware('auth')->group(function(){
+    Route::get('/all/portifolio', 'AllPortfolio')->name('all.portifolio');
+    Route::get('/add/portifolio', 'AddPortfolio')->name('add.portifolio');
+    Route::post('/store/portifolio', 'StorePortfolio')->name('store.portfolio');
+    Route::get('/edit/portifolio/{id}', 'EditPortfolio')->name('edit.portfolio');
+    Route::post('/update/portifolio', 'UpdatePortfolio')->name('update.portfolio');
+    Route::get('/delete/portifolio/{id}', 'DeletePortfolio')->name('delete.portfolio');
+});
+
+Route::get('/portfolio/details/{id}', [PortfolioController::class, 'PortfolioDetails'])->name('portfolio.details');
 
 // Include authentication routes
 require __DIR__.'/auth.php';

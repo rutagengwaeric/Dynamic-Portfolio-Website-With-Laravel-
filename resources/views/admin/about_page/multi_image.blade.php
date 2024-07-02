@@ -35,8 +35,8 @@
                                 <div class="row mb-3">
                                     <label for="username" class="col-sm-2 col-form-label"></label>
                                     <div class="col-sm-10">
-                                        <button class="btn btn-info waves-effect waves-light" type="submit">Update
-                                            Slide</button>
+                                        <button class="btn btn-info waves-effect waves-light" type="submit">Save Images
+                                            </button>
                                     </div>
                                 </div>
 
