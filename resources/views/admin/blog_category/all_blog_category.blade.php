@@ -1,3 +1,6 @@
+
+
+
 @extends('admin.admin_master')
 @section('admin')
     <div class="page-content">
@@ -7,7 +10,7 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">All Portfolio Datatable</h4>
+                            <h4 class="card-title">All blog Category</h4>
                               <br>
 
                             <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -23,16 +26,9 @@
                                                         aria-label="Name: activate to sort column descending">Sl</th>
                                                     <th class="sorting" tabindex="0" aria-controls="datatable"
                                                         rowspan="1" colspan="1" style="width: 218.333px;"
-                                                        aria-label="Position: activate to sort column ascending">Portfolio Image
+                                                        aria-label="Position: activate to sort column ascending"> Blog Category
                                                     </th>
-                                                    <th class="sorting" tabindex="0" aria-controls="datatable"
-                                                        rowspan="1" colspan="1" style="width: 218.333px;"
-                                                        aria-label="Position: activate to sort column ascending">Portfolio Name
-                                                    </th>
-                                                    <th class="sorting" tabindex="0" aria-controls="datatable"
-                                                        rowspan="1" colspan="1" style="width: 218.333px;"
-                                                        aria-label="Position: activate to sort column ascending">Portfolio Title
-                                                    </th>
+
 
                                                     <th class="sorting" tabindex="0" aria-controls="datatable"
                                                         rowspan="1" colspan="1" style="width: 218.333px;"
@@ -46,22 +42,21 @@
                                             <tbody>
                                                 @php($i = 1)
 
-                                                @foreach ($allPortifolios as $item)
+                                                @foreach ($blogCategory as $item)
                                                 <tr role="row" class="even">
                                                     <td class="sorting_1 dtr-control"> {{ $i++ }} </td>
-                                                    <td class="sorting_1 dtr-control"> <img src="{{ asset($item->portfolio_image) }}" style="width: 60px; height: 50px ; border-radius: 5px; " alt=""> </td>
-                                                    <td class="sorting_1 dtr-control"> {{ $item->portfolio_name }} </td>
-                                                    <td class="sorting_1 dtr-control"> {{ $item->portfolio_title }} </td>
+
+                                                    <td class="sorting_1 dtr-control"> {{ $item->blog_category }} </td>
 
                                                     <td>
 
 
-                                                        <a href=" {{ route('edit.portfolio', $item->id) }}" class="btn btn-info sm" title="Edit Data" id="edit"><i class="fas fa-edit"> </i></a>
+                                                        <a href=" {{ route('edit.blog.category', $item->id) }} " class="btn btn-info sm" title="Edit Data" id="edit"><i class="fas fa-edit"> </i></a>
                                                         &nbsp;
                                                         &nbsp;
                                                         &nbsp;
 
-                                                        <a href=" {{ route('delete.portfolio' ,$item->id)}} " class="btn btn-danger sm" title="Delete Data" id="delete"><i class="fas fa-trash-alt"></i></a>
+                                                        <a href=" {{ route('delete.blog.category' ,$item->id)}}   " class="btn btn-danger sm" title="Delete Data" id="delete"><i class="fas fa-trash-alt"></i></a>
                                                     </td>
 
                                                 </tr>

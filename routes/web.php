@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Home\AboutController;
+use App\Http\Controllers\Home\BlogCategoryController;
+use App\Http\Controllers\Home\BlogController;
 use App\Http\Controllers\Home\HomeSliderController;
 use App\Http\Controllers\Home\PortfolioController;
 use App\Http\Controllers\ProfileController;
@@ -35,6 +37,29 @@ Route::controller(AdminController::class)->group(function(){
 Route::controller(HomeSliderController::class)->group(function(){
     Route::get('/home/slide', 'HomeSlider')->name('home.slider');
     Route::post('/update/slide', 'UpdateSlider')->name('update.slider');
+});
+
+// Blog Routes
+Route::controller(BlogController::class)->group(function(){
+    Route::get('/all/blog', 'AllBlog')->name('all.blog');
+    Route::get('/add/blog', 'AddBlog')->name('add.blog');
+    Route::post('/store/blog', 'StoreBlog')->name('store.blog');
+    Route::get('/edit/blog/{id}', 'EditBlog')->name('edit.blog');
+    Route::post('/update/blog/{id}', 'UpdateBlog')->name('update.blog');
+    Route::get('/delete/blog/{id}', 'DeleteBlog')->name('delete.blog');
+    Route::get('/category/blog/{id}', 'CategoryBlog')->name('category.blog');
+    Route::get('/blog','HomeBlog')->name('home.blog');
+});
+
+// Blog Category Routes
+Route::controller(BlogCategoryController::class)->group(function(){
+    Route::get('/all/blog/category', 'BlogCategory')->name('all.blog.category');
+    Route::get('/add/blog/category', 'AddBlogCategory')->name('add.blog.category');
+    Route::post('/store/blog/category', 'StoreBlogCategory')->name('store.blog.category');
+    Route::get('/edit/blog/category/{id}', 'EditBlogCategory')->name('edit.blog.category');
+    Route::post('/update/blog/category/{id}', 'UpdateBlogCategory')->name('update.blog.category');
+    Route::get('/delete/blog/category/{id}', 'DeleteBlogCategory')->name('delete.blog.category');
+
 });
 
 // About Page Routes
@@ -72,6 +97,7 @@ Route::controller(PortfolioController::class)->middleware('auth')->group(functio
 });
 
 Route::get('/portfolio/details/{id}', [PortfolioController::class, 'PortfolioDetails'])->name('portfolio.details');
+Route::get('/blog/details/{id}', [BlogController::class, 'BlogDetails'])->name('blog.details');
 
 // Include authentication routes
 require __DIR__.'/auth.php';

@@ -9,7 +9,7 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">Portifolio Page</h4>
+                            <h4 class="card-title">Portifolio Page</h4> <br><br>
 
                             <form action=" {{ route('store.portfolio')  }}" method="post"  enctype="multipart/form-data">
                                 @csrf
