@@ -219,7 +219,7 @@
 
                                         <li class="rc__post__item">
                                             <div class="rc__post__thumb">
-                                                <a href="blog-details.html"><img src="{{ asset($item->blog_image) }}" alt=""></a>
+                                                <a href=" {{ route('blog.details', $item->id)}}"><img src="{{ asset($item->blog_image) }}" alt=""></a>
                                             </div>
                                             <div class="rc__post__content">
                                                 <h5 class="title"><a href=" {{ route('blog.details', $item->id)}}"> {{ $item->blog_title }} </a></h5>
