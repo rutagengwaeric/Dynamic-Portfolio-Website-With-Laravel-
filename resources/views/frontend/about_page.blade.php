@@ -1,5 +1,10 @@
 @extends('frontend.main_master');
 
+@section('title')
+About | Dynamic Portfolio Website
+@endsection
+
+
 @section('main');
 
 

@@ -40,11 +40,10 @@
 
 
                                             <tbody>
-                                                @php($i = 1)
 
-                                                @foreach ($blogCategory as $item)
+                                                @foreach ($blogCategory as $key => $item)
                                                 <tr role="row" class="even">
-                                                    <td class="sorting_1 dtr-control"> {{ $i++ }} </td>
+                                                    <td class="sorting_1 dtr-control"> {{ $key+1 }} </td>
 
                                                     <td class="sorting_1 dtr-control"> {{ $item->blog_category }} </td>
 

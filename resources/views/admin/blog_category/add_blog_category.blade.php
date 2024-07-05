@@ -11,15 +11,15 @@
 
                             <h4 class="card-title">Add Blog Category</h4> <br><br>
 
-                            <form action=" {{ route('store.blog.category')  }}" method="post">
+                            <form  id="myForm" action=" {{ route('store.blog.category')  }}" method="post" >
                                 @csrf
 
-                                {{-- <input  type="hidden" id="id" name="id" value="{{ $aboutData->id }}"> --}}
+
                                 <div class="row mb-3">
                                     <label for="name" class="col-sm-2 col-form-label">Blog Category Name :</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" type="text" id="blog_category" name="blog_category" :value="old('blog_category')""
-                                            value=" ">
+                                    <div class="form-group col-sm-10">
+                                        <input class="form-control" type="text" id="blog_category" name="blog_category" :value="old('blog_category')"
+                                            >
                                             @if($errors->has('blog_category'))
                                             <span style="color: red; font-size:12px; margin-left:8px; margin-top:3px;">{{$errors->first('blog_category')}}</span>
                                             @endif
@@ -48,15 +48,35 @@
 
 
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('#image').change(function(e) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#showImage').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(e.target.files['0']);
-            })
-        })
+
+    $(document).ready(function() {
+       $('#myForm').validate({
+           rules: {
+               blog_category: {
+                   required: true,
+               },
+           },
+           messages: {
+               blog_category: {
+                   required: 'Please Enter Blog Category Name',
+               },
+           },
+           errorElement: 'span',
+           errorPlacement: function(error, element) {
+               error.addClass('invalid-feedback');
+               element.closest('.form-group').append(error);
+           },
+           highlight: function(element, errorClass, validClass) {
+               $(element).addClass('is-invalid');
+           },
+           unhighlight: function(element, errorClass, validClass) {
+               $(element).removeClass('is-invalid');
+           }
+       })
+    })
+
+
+
     </script>
 
 

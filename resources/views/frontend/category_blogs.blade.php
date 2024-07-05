@@ -1,6 +1,10 @@
 
 @extends('frontend.main_master')
 
+@section('title')
+Blog Category | Dynamic Portfolio Website
+@endsection
+
 @section('main')
 
     <!-- breadcrumb-area -->

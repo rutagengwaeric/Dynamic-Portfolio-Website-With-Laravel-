@@ -134,6 +134,13 @@ class PortfolioController extends Controller
             'portfolio' => $portfolio
         ]);
     }
+    public function HomePortfolio(){
+
+        $allPortifolios = Portfolio::latest()->get();
+        return view('frontend.portfolio', [
+            'allPortifolios' => $allPortifolios
+        ]);
+    }
 
 
 }

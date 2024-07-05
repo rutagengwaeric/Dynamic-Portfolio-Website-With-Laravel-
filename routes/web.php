@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Demo\DemoController;
 use App\Http\Controllers\Home\AboutController;
 use App\Http\Controllers\Home\BlogCategoryController;
 use App\Http\Controllers\Home\BlogController;
@@ -12,19 +13,23 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 // Frontend Routes
-Route::get('/', function () {
-    return view('frontend.index');
-});
+// Route::get('/', function () {
+//     return view('frontend.index');
+// });
 
 Route::get('/admin', function () {
     return view('auth.login');
 });
+
+
 
 // Dashboard Route with Middleware
 Route::get('/dashboard', function () {
     return view('admin.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
+Route::get('/', [DemoController::class, 'HomePage'])->name('home');
 // Admin Controller Routes
 Route::controller(AdminController::class)->group(function(){
     Route::get('/admin/logout', 'destroy')->name('admin.logout');
@@ -108,6 +113,7 @@ Route::controller(PortfolioController::class)->middleware('auth')->group(functio
     Route::get('/edit/portifolio/{id}', 'EditPortfolio')->name('edit.portfolio');
     Route::post('/update/portifolio', 'UpdatePortfolio')->name('update.portfolio');
     Route::get('/delete/portifolio/{id}', 'DeletePortfolio')->name('delete.portfolio');
+    Route::get('/portifolio', 'HomePortfolio')->name('home.portfolio');
 });
 
 Route::get('/portfolio/details/{id}', [PortfolioController::class, 'PortfolioDetails'])->name('portfolio.details');

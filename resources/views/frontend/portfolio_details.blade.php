@@ -1,6 +1,11 @@
 @extends('frontend.main_master');
 
-@section('main');
+@section('title')
+Portfolio Details | Dynamic Portfolio Website
+@endsection
+
+
+@section('main')
 
 
 

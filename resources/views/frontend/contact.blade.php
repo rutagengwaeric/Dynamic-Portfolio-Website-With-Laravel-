@@ -1,4 +1,9 @@
 @extends('frontend.main_master')
+
+@section('title')
+Contact | Dynamic Portfolio Website
+@endsection
+
 @section('main')
     <!-- breadcrumb-area -->
     <section class="breadcrumb__wrap">
