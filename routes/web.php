@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Home\AboutController;
 use App\Http\Controllers\Home\BlogCategoryController;
 use App\Http\Controllers\Home\BlogController;
+use App\Http\Controllers\Home\ContactController;
 use App\Http\Controllers\Home\FooterController;
 use App\Http\Controllers\Home\HomeSliderController;
 use App\Http\Controllers\Home\PortfolioController;
@@ -39,7 +40,14 @@ Route::controller(HomeSliderController::class)->group(function(){
     Route::get('/home/slide', 'HomeSlider')->name('home.slider');
     Route::post('/update/slide', 'UpdateSlider')->name('update.slider');
 });
-// Fotter Routes
+// Contact Routes
+Route::controller(ContactController::class)->group(function(){
+    Route::get('/contact', 'Contact')->name('contact.me');
+    Route::post('/store/contact', 'StoreContact')->name('contact.store');
+    Route::get('/contact/messages', 'ContactMessages')->name('contact.message');
+    Route::get('/delete/contact/{id}', 'DeleteContact')->name('delete.message');
+});
+// Footer Routes
 Route::controller(FooterController::class)->group(function(){
     Route::get('/footer/setup', 'FooterSetup')->name('footer.setup');
     Route::post('/update/footer', 'UpdateFooter')->name('update.footer');
